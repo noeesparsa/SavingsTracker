@@ -1,4 +1,5 @@
 import js from "@eslint/js";
+import pluginQuery from "@tanstack/eslint-plugin-query";
 import vitest from "@vitest/eslint-plugin";
 import eslintConfigPrettier from "eslint-config-prettier/flat";
 import checkFile from "eslint-plugin-check-file";
@@ -23,6 +24,7 @@ export default defineConfig([
       reactRefresh.configs.vite,
       eslintConfigPrettier,
       eslintPluginPrettierRecommended,
+      pluginQuery.configs["flat/recommended"],
     ],
     plugins: {
       perfectionist,
@@ -57,12 +59,12 @@ export default defineConfig([
       // File and folder naming conventions
       "check-file/filename-naming-convention": [
         "error",
-        { "src/*.{ts,tsx}": "PASCAL_CASE" },
+        { "src/*.{tsx}": "PASCAL_CASE" },
         { ignoreMiddleExtensions: true },
       ],
       "check-file/folder-naming-convention": [
         "error",
-        { "src/**/": "KEBAB_CASE" },
+        { "src/**/": "CAMEL_CASE" },
       ],
 
       // Prettier
