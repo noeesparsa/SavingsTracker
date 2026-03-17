@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render, type RenderOptions } from "@testing-library/react";
+import { App as AntdAppContext } from "antd";
 import type { PropsWithChildren, ReactElement } from "react";
 
 const createTestQueryClient = () =>
@@ -18,7 +19,7 @@ type RenderWithQueryClientOptions = Omit<RenderOptions, "wrapper"> & {
   queryClient?: QueryClient;
 };
 
-const renderWithQueryClient = (
+const customRender = (
   ui: ReactElement,
   {
     queryClient = createTestQueryClient(),
@@ -26,7 +27,9 @@ const renderWithQueryClient = (
   }: RenderWithQueryClientOptions = {}
 ) => {
   const Wrapper = ({ children }: PropsWithChildren) => (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    <AntdAppContext>
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    </AntdAppContext>
   );
 
   return {
@@ -38,4 +41,4 @@ const renderWithQueryClient = (
   };
 };
 
-export { createTestQueryClient, renderWithQueryClient };
+export { createTestQueryClient, customRender };

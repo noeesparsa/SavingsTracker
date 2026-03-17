@@ -1,3 +1,8 @@
+type LoggingFormType = {
+  email: string;
+  password: string;
+};
+
 type Account = {
   id: string;
   label: string;
@@ -5,4 +10,4 @@ type Account = {
 
 type AccountSnapshotPayload = Record<string, number>;
 
-export type { Account, AccountSnapshotPayload };
+export type { LoggingFormType, Account, AccountSnapshotPayload };

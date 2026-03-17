@@ -10,18 +10,19 @@ import type { AccountSnapshotPayload } from "../../types";
 import FormInput from "../formInput/FormInput.component";
 
 type AccountFormProps = {
-  username: string;
+  userEmail: string | null;
 };
 
-const AccountForm: FC<Readonly<AccountFormProps>> = ({ username }) => {
+const AccountForm: FC<Readonly<AccountFormProps>> = ({ userEmail }) => {
+  const [form] = Form.useForm();
+
   const {
     data: accounts,
     isLoading: isAccountsLoading,
     isError: isAccountsError,
-  } = useGetSavingsAccounts(username);
+  } = useGetSavingsAccounts(userEmail ?? "");
   const { mutate: uploadSnapshot, isPending: isUploadPending } =
-    useUploadSavingsSnapshot(username);
-  const [form] = Form.useForm();
+    useUploadSavingsSnapshot(userEmail ?? "");
 
   const onFinish = (values: AccountSnapshotPayload) => {
     uploadSnapshot(values);
@@ -44,7 +45,7 @@ const AccountForm: FC<Readonly<AccountFormProps>> = ({ username }) => {
                   />
                 ))}
               </div>
-              <div className="flex flex-col items-end">
+              <div className="flex flex-col items-center md:items-end">
                 <Button
                   type="primary"
                   htmlType="submit"

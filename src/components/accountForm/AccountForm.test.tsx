@@ -2,7 +2,7 @@ import { fireEvent, screen } from "@testing-library/react";
 import { act } from "react";
 import { vi } from "vitest";
 
-import { renderWithQueryClient } from "../../test-utils";
+import { customRender } from "../../test-utils";
 
 import AccountForm from "./AccountForm.component";
 
@@ -34,7 +34,7 @@ describe("AccountForm", () => {
   });
 
   it("should render the fetched accounts and submit action", () => {
-    renderWithQueryClient(<AccountForm username="user" />);
+    customRender(<AccountForm userEmail="noe.esp@hotmail.fr" />);
 
     expect(screen.getByText("Livret A")).toBeVisible();
     expect(
@@ -43,7 +43,7 @@ describe("AccountForm", () => {
   });
 
   it("should upload savings on form submission", async () => {
-    renderWithQueryClient(<AccountForm username="user" />);
+    customRender(<AccountForm userEmail="noe.esp@hotmail.fr" />);
     const uploadButton = screen.getByRole("button", {
       name: /Upload snapshot/,
     });
