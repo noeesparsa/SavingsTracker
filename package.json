@@ -14,7 +14,7 @@
     "preview": "vite preview",
     "prepare": "husky",
     "pre-commit": "lint-staged",
-    "deploy": "firebase deploy --only hosting"
+    "deploy": "tsc -b && vite build && firebase deploy"
   },
   "engines": {
     "node": "24.14.0"

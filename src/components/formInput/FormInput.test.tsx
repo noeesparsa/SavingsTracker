@@ -1,13 +1,13 @@
 import { screen } from "@testing-library/react";
 import { Form } from "antd";
 
-import { renderWithQueryClient } from "../../test-utils";
+import { customRender } from "../../test-utils";
 
 import FormInput from "./FormInput.component";
 
 describe("FormInput", () => {
   it("should render the label and euro input", () => {
-    renderWithQueryClient(
+    customRender(
       <Form layout="vertical">
         <FormInput id="savings" label="Savings" />
       </Form>
